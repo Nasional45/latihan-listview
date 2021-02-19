@@ -1,84 +1,95 @@
 import 'package:flutter/material.dart';
+import 'cardview.dart';
+import 'listview.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(new MaterialApp(
+      // Pertama Kali dirun hal 1
+      home: new Halsatu(),
+      title: "Navigasi",
+      debugShowCheckedModeBanner: false,
+      //Membuat Routing
+      //Daftar nama route untuk setiap halaman
+      routes: <String, WidgetBuilder>{
+        '/Halsatu': (BuildContext context) => Halsatu(),
+        '/Haldua': (BuildContext context) => LV(),
+        '/Haltiga': (BuildContext context) => CV(),
+      }));
+}
 
-class MyApp extends StatelessWidget {
-  List<Color> colors = [
-    Colors.amberAccent,
-    Colors.blue,
-    Colors.black,
-    Colors.brown,
-    Colors.blueAccent,
-    Colors.brown,
-  ];
+//Class hal satu
+class Halsatu extends StatelessWidget {
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final title = 'Nyobain ListView';
-
-    return MaterialApp(
-      title: title,
-      home: Scaffold(
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Container(
-              child: Column(
-                children: [
-                  Container(
-                    height: 200,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: <Widget>[
-                        Container(
-                          width: 200,
-                          color: Colors.grey,
-                        ),
-                        Container(
-                          width: 200,
-                          color: Colors.blueGrey,
-                        ),
-                        Container(
-                          width: 200,
-                          color: Colors.green,
-                        ),
-                        Container(
-                          width: 200,
-                          color: Colors.grey,
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 200,
-                    width: 300,
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: colors.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            width: 400,
-                            height: 150,
-                            color: colors[index],
-                          );
-                        }),
-                  ),
-                  Container(
-                    height: 200,
-                    width: 300,
-                    child: ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        itemCount: colors.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            width: 400,
-                            height: 150,
-                            color: colors[index],
-                          );
-                        }),
-                  )
-                ],
-              ),
-            ),
+    return new Scaffold(
+      //judul Appbar
+      appBar: new AppBar(
+        title: new Text("Home"),
+      ),
+      // icon button
+      body: new Center(
+        child: new IconButton(
+          icon: new Icon(
+            Icons.android,
+            size: 50.0,
+            color: Colors.green,
           ),
+          onPressed: () {
+            Navigator.pushNamed(context, '/Haldua');
+          },
+        ),
+      ),
+    );
+  }
+}
+
+//Class hal Dua
+class Haldua extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      //judul Appbar
+      appBar: new AppBar(
+        title: new Text("Music"),
+      ),
+      // icon button
+      body: new Center(
+        child: new IconButton(
+          icon: new Icon(
+            Icons.music_note,
+            size: 50.0,
+            color: Colors.red,
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, '/Haltiga');
+          },
+        ),
+      ),
+    );
+  }
+}
+
+//Class hal Tiga
+class Haltiga extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      //judul Appbar
+      appBar: new AppBar(
+        title: new Text("Kalender"),
+      ),
+      // icon button
+      body: new Center(
+        child: new IconButton(
+          icon: new Icon(
+            Icons.calendar_today,
+            size: 50.0,
+            color: Colors.blue,
+          ),
+          onPressed: () {},
         ),
       ),
     );
